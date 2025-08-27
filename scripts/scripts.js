@@ -66,15 +66,15 @@ function displayQuote(selected) {
 }
 
 
-newQuoteBtn.addEventListener('click', function() {
+// newQuoteBtn.addEventListener('click', function() {
 
-    const randomIndex = Math.floor(Math.random() * quotes.length);
+//     const randomIndex = Math.floor(Math.random() * quotes.length);
 
-    const selected = quotes[randomIndex];
+//     const selected = quotes[randomIndex];
 
-    displayQuote(selected);
+//     displayQuote(selected);
 
-});
+// });
 
 //Clear Button
 clearBtn.addEventListener('click', () => {
@@ -134,3 +134,7 @@ window.addEventListener('load', () => {
   }
 });
 
+const API_URL = 'https://api.api-ninjas.com/v1/quotes';
+const API_KEY = 'O4lQIhWRb2owCG4Vb6Kv4w==CgyowH5XnUIX3NfG';
+
+//fetching a random quote
