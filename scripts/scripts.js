@@ -138,3 +138,64 @@ const API_URL = 'https://api.api-ninjas.com/v1/quotes';
 const API_KEY = 'O4lQIhWRb2owCG4Vb6Kv4w==CgyowH5XnUIX3NfG';
 
 //fetching a random quote
+
+
+async function getQuote(){
+
+  const res = await fetch(API_URL, { 
+
+  headers: { 'X-Api-Key': API_KEY }
+
+});
+
+  if(!res.ok) throw new Error(`HTTP ${res.status}`);
+
+  const data =  await res.json();
+
+  if(!Array.isArray(data) || data.length === 0){
+    throw new Error('No quote returned');
+    
+  }
+
+  const q = data[0];
+  return { text: q.quote, author: q.author || 'Someone' };
+}
+  
+newQuoteBtn.addEventListener('click', newQuoteFromAnywhere);
+
+async function newQuoteFromAnywhere() {
+// The button would disable so the user can’t click again while waiting for the API
+  try {
+    // This callls the API
+     newQuoteBtn.disabled = true;
+    const selected = await getQuote();
+    displayQuote(selected);
+
+  }catch (err) {
+
+    //if it is fails they will catch the error
+    console.warn('API failed, using local quotes. Reason:', err.message);
+
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    displayQuote(quotes[randomIndex]);
+
+  }finally {
+
+    // enables the button
+    newQuoteBtn.disabled = false;
+
+  }
+  
+}
+
+window.addEventListener('load', async () => {
+  const saved = localStorage.getItem('lastQuote');
+
+  if(saved){
+
+    displayQuote(JSON.parse(saved));
+
+  }else {
+    await newQuoteFromAnywhere();
+  }
+});
