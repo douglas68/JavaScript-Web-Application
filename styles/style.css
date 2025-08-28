@@ -9,7 +9,7 @@ body {
 }
 
 main {
-  background-color: #310bdd;
+  background-color: #1E2A5A;
   padding: 30px;
   border-radius: 15px;
   max-width: 600px;
@@ -19,12 +19,14 @@ main {
 
 h1, h2 {
     text-align: center;
+    color: white;
 }
 
 #quote-box {
   margin: 20px 0;
-  padding:15px;
-  border-left:4px solid #6e8db8;
+  padding:15px ;
+  background-color: #1257b8;
+  color: white;
 }
 
 button {
